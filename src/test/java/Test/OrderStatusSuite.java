@@ -1,35 +1,21 @@
 package Test;
 
 
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-import ru.yandex.ScooterPageObject.ManePage;
-import ru.yandex.ScooterPageObject.OrderStatusPage;
+import org.junit.jupiter.api.Test;
+import ru.yandex.ScooterPageObject.MainePage;
+import ru.yandex.ScooterPageObject.OrderTrackPage;
 
-
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 public class OrderStatusSuite {
 
-    @BeforeTest
-    public void settingsBrowser(){
-//        System.setProperty("webdriver.geckodriver", "https://github.com/mozilla/geckodriver/releases");
-//        System.setProperty("selenide.browser", "firefox");
-
-        ManePage manePage =
-                open("https://qa-scooter.praktikum-services.ru",
-                        ManePage.class);
-        manePage.clickButtonAcceptCookie();
-
-    }
-
-    /** Тест проверяет, что поиск заказа, через поле "Поиск заказа" в хедере, с невалидным номером - провалится **/
-    @Test
+    // Тест проверяет, что поиск заказа, через поле "Поиск заказа" в хедере, с невалидным номером - провалится
+    @org.junit.jupiter.api.Test
     public void searchStatusOrderInHeader(){
 
-        OrderStatusPage orderStatus =
+        OrderTrackPage orderStatus =
                 open("https://qa-scooter.praktikum-services.ru",
-                        OrderStatusPage.class);
+                        OrderTrackPage.class);
 
         orderStatus.clickButtonOrderStatus()
                 .setValueInputSearchNumberOrderInHeader("123")
@@ -37,57 +23,57 @@ public class OrderStatusSuite {
                 .isDisplayedImgNotFound();
     }
 
-    /** Тест проверяет, что поиск заказа, через поле "Поиск заказа" на странице статус заказа,
-     *  с невалидным номером - провалится **/
+    // Тест проверяет, что поиск заказа, через поле "Поиск заказа" на странице статус заказа,
+    // с невалидным номером - провалится
     @Test
     public void searchStatusOrderOnStatusOrderPage(){
-        OrderStatusPage orderStatus =
-                open("https://qa-scooter.praktikum-services.ru/track/",
-                        OrderStatusPage.class);
+
+        OrderTrackPage orderStatus =
+                open("https://qa-scooter.praktikum-services.ru/track",
+                        OrderTrackPage.class);
 
         orderStatus.setValueInputSearchNumberOrderInOrderStatusPage("1234")
                 .clickButtonWatchSearchNumberOrder()
                 .isDisplayedImgNotFound();
     }
 
-    /** Тест проверяет, что поиск заказа, через поле "Поиск заказа" на странице статус заказа,
-     *  с использованием букв, вместо цифр - провалится **/
+    // Тест проверяет, что поиск заказа, через поле "Поиск заказа" на странице статус заказа,
+    //с использованием букв, вместо цифр - провалится
     @Test
     public void searchStatusOrderByLetters(){
-        OrderStatusPage orderStatus =
-                open("https://qa-scooter.praktikum-services.ru/track/",
-                        OrderStatusPage.class);
+
+        OrderTrackPage orderStatus =
+                open("https://qa-scooter.praktikum-services.ru/track",
+                        OrderTrackPage.class);
 
         orderStatus.setValueInputSearchNumberOrderInOrderStatusPage("sdfsdf")
                 .clickButtonWatchSearchNumberOrder()
                 .isDisplayedImgNotFound();
     }
 
-    /** Тест проверяет, что находясь на странице оформления заказа
-     * и кликая на кнопку "Скутер", пользователь остается на главной **/
-    @Test
+    // Тест проверяет, что находясь на странице оформления заказа
+    //и кликая на кнопку "Скутер", пользователь остается на главной
+//    @Test
     public void checkButtonScooterInPageOrderCreate(){
 
-        ManePage manePage =
-                open("https://qa-scooter.praktikum-services.ru/track/",
-                        ManePage.class);
+        MainePage mainePage =
+                open("https://qa-scooter.praktikum-services.ru/track",
+                        MainePage.class);
 
-        manePage.clickButtonScooter()
-                .isUrlIsManeScooter();
+        mainePage.clickButtonScooter()
+                .urlIsManeScooter();
     }
 
-    /** Тест проверяет, что находясь на странице оформления заказа и кликая на
-     * кнопку "Яндекс", у пользователя открывается страница с Яндексом **/
-    @Test
+    // Тест проверяет, что находясь на странице оформления заказа и кликая на
+    // кнопку "Яндекс", у пользователя открывается страница с Яндексом
+//    @Test
     public void checkButtonYandexInOrderStatusPage(){
-        ManePage manePage =
-                open("https://qa-scooter.praktikum-services.ru/track/",
-                        ManePage.class);
 
-        manePage.clickButtonYandex();
-        switchTo().window(1);
-        manePage.isUrlIsYandex();
-        switchTo().window(1).close();
-        switchTo().window(0);
+        MainePage mainePage =
+                open("https://qa-scooter.praktikum-services.ru/track",
+                        MainePage.class);
+
+        mainePage.clickButtonYandex()
+                .isUrlIsYandex();
     }
 }

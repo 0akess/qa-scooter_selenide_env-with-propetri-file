@@ -7,7 +7,9 @@ import org.openqa.selenium.support.How;
 
 import java.time.Duration;
 
-public class OrderStatusPage {
+import static com.codeborne.selenide.Selenide.open;
+
+public class OrderTrackPage extends Base_URL {
 
     @FindBy(how = How.XPATH, using = "//*[text()='Статус заказа']")
     private SelenideElement buttonOrderStatus;
@@ -28,41 +30,41 @@ public class OrderStatusPage {
     private SelenideElement imgNotFound;
 
 
-    /** Метод нажимает на кнопку "Статус заказа", находящейся в футоре **/
-    public OrderStatusPage clickButtonOrderStatus(){
+    // Метод нажимает на кнопку "Статус заказа", находящейся в футоре
+    public OrderTrackPage clickButtonOrderStatus(){
         buttonOrderStatus.click();
         return this;
     }
 
-    /** Метод позволяет заполнить поле поиска заказа на главной странице **/
-    public OrderStatusPage setValueInputSearchNumberOrderInHeader(String valueForSearchOrder){
+    // Метод позволяет заполнить поле поиска заказа на главной странице
+    public OrderTrackPage setValueInputSearchNumberOrderInHeader(String valueForSearchOrder){
         inputSearchNumberOrderInHeader.click();
         inputSearchNumberOrderInHeader.setValue(valueForSearchOrder);
         return this;
     }
 
-    /** Метод кликает по кнопке поиска "GO!", тем самым производя поиск указанного номера заказа **/
-    public OrderStatusPage clickButtonGoSearchNumberOrder(){
+    // Метод кликает по кнопке поиска "GO!", тем самым производя поиск указанного номера заказа
+    public OrderTrackPage clickButtonGoSearchNumberOrder(){
         buttonGoSearchNumberOrder.click();
         return this;
     }
 
-    /** Метод позволяет заполнить поле поиска заказа на странице статуса заказа **/
-    public OrderStatusPage setValueInputSearchNumberOrderInOrderStatusPage(String valueForSearchOrder){
+    // Метод позволяет заполнить поле поиска заказа на странице статуса заказа
+    public OrderTrackPage setValueInputSearchNumberOrderInOrderStatusPage(String valueForSearchOrder){
 
         inputSearchNumberOrderInOrderStatusPage.scrollTo().shouldHave
                 (Condition.visible).setValue(valueForSearchOrder);
         return this;
     }
 
-    /** Метод позволяет на кнопку "Посмотреть", кнопка находиться непосредственно на странице поиска заказа **/
-    public OrderStatusPage clickButtonWatchSearchNumberOrder(){
+    // Метод позволяет на кнопку "Посмотреть", кнопка находиться непосредственно на странице поиска заказа
+    public OrderTrackPage clickButtonWatchSearchNumberOrder(){
         buttonWatchSearchNumberOrder.click();
         return this;
     }
 
-    /** Метод проверяет, что по-указанному номеру заказа, заказа нет **/
-    public OrderStatusPage isDisplayedImgNotFound(){
+    // Метод проверяет, что по-указанному номеру заказа, заказа нет
+    public OrderTrackPage isDisplayedImgNotFound(){
         imgNotFound.shouldHave(Condition.visible, Duration.ofMillis(1500));
         return this;
     }

@@ -5,15 +5,14 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.testng.Assert;
+
 
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.switchTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ManePage {
-
-    public static final String urlYandex = "https://yandex.ru/";
-    public static final String urlManeScooter = "https://qa-scooter.praktikum-services.ru/";
-
+public class MainePage extends Base_URL {
 
     @FindBy(how = How.CLASS_NAME, using = "App_CookieConsent__1yUIN")
     private SelenideElement cookieConsent;
@@ -141,264 +140,260 @@ public class ManePage {
     private SelenideElement blockFAQ;
 
 
+
     // Проверяет, что блок куки отображается
-    public ManePage isCookieConsent() {
+    public MainePage isCookieConsent() {
         cookieConsent.isDisplayed();
         return this;
     }
 
     // Проверяет, что текст куки отображается
-    public ManePage isCookieText() {
+    public MainePage isCookieText() {
         cookieText.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается заголовок главной страницы
-    public ManePage isHeaderManeScooter() {
+    public MainePage isHeaderManeScooter() {
         headerManeScooter.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст под заголовком до скрола
-    public ManePage isSubHeaderOne() {
+    public MainePage isSubHeaderOne() {
         subHeaderOne.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается второй текст под заголовком
     // он отображается после скролла страницы
-    public ManePage isSubHeaderTwo() {
+    public MainePage isSubHeaderTwo() {
         subHeaderTwo.isDisplayed();
         return this;
     }
 
     // Проверяет, что кнопка Заказать отображается
-    public ManePage isButtonCreateOrderInHeader() {
+    public MainePage isButtonCreateOrderInHeader() {
         buttonCreateOrderInHeader.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается кнопка Статус заказа
-    public ManePage isButtonOrderStatus() {
+    public MainePage isButtonOrderStatus() {
         buttonOrderStatus.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается поле для ввода номера заказа
-    public ManePage isInputSearchNumberOrderInHeader() {
+    public MainePage isInputSearchNumberOrderInHeader() {
         inputSearchNumberOrderInHeader.isDisplayed();
         return this;
     }
 
     // Проверяет, что кнопка GO отображается
-    public ManePage isButtonGoSearchNumberOrder() {
+    public MainePage isButtonGoSearchNumberOrder() {
         buttonGoSearchNumberOrder.isDisplayed();
         return this;
     }
 
     // Проверяет, что блок о скутере отображается
-    public ManePage isBlockAboutScooter() {
+    public MainePage isBlockAboutScooter() {
         blockAboutScooter.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Максимальная скорость
-    public ManePage isTextMaxSpeed() {
+    public MainePage isTextMaxSpeed() {
         textMaxSpeed.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается Максимальная скорость
-    public ManePage isTextMaxSpeedKmH() {
+    public MainePage isTextMaxSpeedKmH() {
         textMaxSpeedKmH.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Максимальная дистанция
-    public ManePage isTextTravelDistance() {
+    public MainePage isTextTravelDistance() {
         textTravelDistance.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается Максимальная дистанция
-    public ManePage isTextTravelDistanceKm() {
+    public MainePage isTextTravelDistanceKm() {
         textTravelDistanceKm.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Максимальная вес
-    public ManePage isTextWeight() {
+    public MainePage isTextWeight() {
         textWeight.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается Максимальная вес
-    public ManePage isTextWeightMax() {
+    public MainePage isTextWeightMax() {
         textWeightMax.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Как это работает
-    public ManePage isTextHowItWorks() {
+    public MainePage isTextHowItWorks() {
         textHowItWorks.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается верный номер шага
     // требует numberSteps. 1 - первый шаг, 2 - второй шаг и тд
-    public ManePage isNumberStepsHowItWorks(int numberSteps) {
+    public MainePage isNumberStepsHowItWorks(int numberSteps) {
         numberStepsHowItWorks.get(numberSteps-1).isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Первого заголовка
-    public ManePage isHeaderTextStepsOne() {
+    public MainePage isHeaderTextStepsOne() {
         headerTextStepsOne.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Первого шага
-    public ManePage isTextStepsOne() {
+    public MainePage isTextStepsOne() {
         textStepsOne.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Второго заголовка
-    public ManePage isHeaderTextStepsTwo() {
+    public MainePage isHeaderTextStepsTwo() {
         headerTextStepsTwo.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Второго шага
-    public ManePage isTextStepsTwo() {
+    public MainePage isTextStepsTwo() {
         textStepsTwo.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Третьего заголовка
-    public ManePage isHeaderTextStepsThree() {
+    public MainePage isHeaderTextStepsThree() {
         headerTextStepsThree.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Третьего шага
-    public ManePage isTextStepsThree() {
+    public MainePage isTextStepsThree() {
         textStepsThree.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Четвертого заголовка
-    public ManePage isHeaderTextStepsFour() {
+    public MainePage isHeaderTextStepsFour() {
         headerTextStepsFour.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст Четвертого шага
-    public ManePage isTextStepsFour() {
+    public MainePage isTextStepsFour() {
         textStepsFour.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается кнопка Заказать
-    public ManePage isButtonCreateOrderInRoadMap() {
+    public MainePage isButtonCreateOrderInRoadMap() {
         buttonCreateOrderInRoadMap.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст заголовка Вопросы о важном
-    public ManePage isTextQuestionsAboutImportant() {
+    public MainePage isTextQuestionsAboutImportant() {
         textQuestionsAboutImportant.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается блок Вопросы о важном
-    public ManePage isBlockFourPart() {
+    public MainePage isBlockFourPart() {
         blockQuestionsAboutImportant.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается блок FAQ
-    public ManePage isBlockFAQ() {
+    public MainePage isBlockFAQ() {
         blockFAQ.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст название модели
-    public ManePage isTextNameScooter() {
+    public MainePage isTextNameScooter() {
         textNameScooter.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается текст хедера "Учебный тренажер"
-    public ManePage isHeaderDisclaimerTrainingSimulator() {
+    public MainePage isHeaderDisclaimerTrainingSimulator() {
         headerDisclaimerTrainingSimulator.isDisplayed();
         return this;
     }
 
     // Проверяет, что текст "Как это работает" не изменился
-    public ManePage isImgScooterBlueprint() {
+    public MainePage isImgScooterBlueprint() {
         imgScooterBlueprint.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается кнопка Scroll down
-    public ManePage isButtonArrowDown() {
+    public MainePage isButtonArrowDown() {
         buttonArrowDown.isDisplayed();
         return this;
     }
 
     // Проверяет, что отображается полное изображение скутера
-    public ManePage isImgScooterBlack() {
+    public MainePage isImgScooterBlack() {
         imgScooterBlack.scrollTo().isDisplayed();
         return this;
     }
 
-    /**
-     * Позволяет принять куки на сайте
-     **/
-    public ManePage clickButtonAcceptCookie() {
+    // Позволяет принять куки на сайте
+    public MainePage clickButtonAcceptCookie() {
         buttonAcceptCookie.click();
         return this;
     }
 
-    /**
-     * Позволяет нажать на кнопку "Яндекс" и перейти на страницу Яндекс
-     */
-    public ManePage clickButtonYandex() {
+    // Позволяет нажать на кнопку "Яндекс" и перейти на страницу Яндекс
+    public MainePage clickButtonYandex() {
         buttonYandex.scrollTo().click();
+        switchTo().window(1);
         return this;
     }
 
-    /**
-     * Позволяет нажать на кнопку "Самокат" и перейти главную страницу сервиса
-     */
-    public ManePage clickButtonScooter() {
+    // Позволяет нажать на кнопку "Самокат" и перейти главную страницу сервиса
+    public MainePage clickButtonScooter() {
         buttonScooter.scrollTo().click();
         return this;
     }
 
-    /**
-     * Позволяет проверить ссылка соответствует ссылке главной страницы или нет
-     */
-    public ManePage isUrlIsYandex() {
+    // Позволяет проверить ссылка соответствует ссылке главной страницы или нет
+    public MainePage isUrlIsYandex() {
         String urlYandexActual = WebDriverRunner.url();
-        Assert.assertEquals(urlYandexActual, urlYandex, "Ссылка отличается");
+        try {
+            assertEquals(URL_YANDEX, urlYandexActual, "Ссылка отличается");
+        }
+        finally {
+            switchTo().window(1).close();
+            switchTo().window(0);
+        }
         return this;
     }
 
-    /**
-     * Позволяет проверить ссылка соответствует ссылке главной страницы или нет
-     */
-    public ManePage isUrlIsManeScooter() {
+    // Позволяет проверить ссылка соответствует ссылке главной страницы или нет
+    public MainePage urlIsManeScooter() {
         String urlManeScooterActual = WebDriverRunner.url();
-        Assert.assertEquals(urlManeScooterActual, urlManeScooter, "Ссылка отличается");
+        assertEquals(URL_MAINE_SCOOTER_PAGE, urlManeScooterActual, "Ссылка отличается");
         return this;
     }
 
-    /**
-     * Массив ответов на вопросы. При необходимости увеличить количество ответов,
-     * просто допишите в answersToQuestion элемент массива
-     */
+    // Массив ответов на вопросы. При необходимости увеличить количество ответов,
+    // просто допишите в answersToQuestion элемент массива
     public static String getAnswers(int numberQuestion) {
         String[] answersToQuestion = {
 
@@ -443,7 +438,7 @@ public class ManePage {
     public void openQuestionAndCheckingAnswer(int numberQuestion) {
 
         buttonOpenAnswerToQuestions.get(numberQuestion).scrollTo().click(); // Открывает нужный вопрос
-        Assert.assertEquals(answerToQuestions.get(numberQuestion).shouldBe(visible).getText(),
-                getAnswers(numberQuestion), "Текст отличается");
+        assertEquals(getAnswers(numberQuestion),
+                answerToQuestions.get(numberQuestion).shouldBe(visible).getText(), "Текст отличается");
     }
 }

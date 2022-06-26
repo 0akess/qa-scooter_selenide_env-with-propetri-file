@@ -11,7 +11,7 @@ public class Properties {
         String property = "";
         String env = System.getProperty("env");
 
-        if(env == null){
+        if (env == null) {
             env = "test";
         }
 

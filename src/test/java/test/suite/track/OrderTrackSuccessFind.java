@@ -1,0 +1,83 @@
+package test.suite.track;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import ru.yandex.api.http.client.requests.OrdersRequest;
+import ru.yandex.api.models.OrderModel;
+import ru.yandex.api.models.builder.OrderBuilder;
+import ru.yandex.ui.data.Url;
+import ru.yandex.ui.po.pages.TrackOrderPage;
+import test.BaseTest;
+
+import static com.codeborne.selenide.Selenide.page;
+
+public class OrderTrackSuccessFind extends BaseTest {
+
+    private TrackOrderPage trackOrderPage = page(TrackOrderPage.class);
+    private String trackOrder;
+    private OrderModel orderBuild;
+
+    @BeforeEach
+    public void getTrackNumber(){
+
+        orderBuild = new OrderBuilder().getJsonOrder();
+        int a = new OrdersRequest()
+                .createOrder(orderBuild)
+                .extract().path("track");
+        trackOrder = String.valueOf(a);
+    }
+
+    // Тест проверяет, что поиск заказа, через поле "Поиск заказа" в хедере, с невалидным номером - провалится
+    @Test
+    public void searchOrderInHeader_ValidTrack_OrderFound() {
+
+        trackOrderPage
+                .open(Url.MainPage)
+                .clickButtonOrderStatus()
+                .setValueInputSearchNumberOrderInHeader(trackOrder)
+                .clickButtonGoSearchNumberOrder()
+                .isOrderFound();
+    }
+
+    // Тест проверяет, что поиск заказа, через поле "Поиск заказа" на странице статус заказа,
+    // с невалидным номером - провалится
+    @Test
+    public void searchOrderOnStatusOrderPage_ValidTrack_OrderFound() {
+
+        trackOrderPage
+                .open(Url.TrackPage)
+                .setValueInputSearchNumberOrderInOrderStatusPage(trackOrder)
+                .clickButtonWatchSearchNumberOrder()
+                .isOrderFound();
+    }
+
+    @Test
+    public void searchOrder_PhoneVisible(){
+
+        trackOrderPage
+                .open(Url.TrackPage)
+                .setValueInputSearchNumberOrderInOrderStatusPage(trackOrder)
+                .clickButtonWatchSearchNumberOrder()
+                .isPhoneFound(orderBuild);
+    }
+
+    @Test
+    public void searchOrder_LastNameVisible(){
+
+        trackOrderPage
+                .open(Url.TrackPage)
+                .setValueInputSearchNumberOrderInOrderStatusPage(trackOrder)
+                .clickButtonWatchSearchNumberOrder()
+                .isLastNameFound(orderBuild);
+    }
+
+    @Test
+    public void searchOrder_AddressVisible(){
+
+        trackOrderPage
+                .open(Url.TrackPage)
+                .setValueInputSearchNumberOrderInOrderStatusPage(trackOrder)
+                .clickButtonWatchSearchNumberOrder()
+                .isAddressFound(orderBuild);
+    }
+}

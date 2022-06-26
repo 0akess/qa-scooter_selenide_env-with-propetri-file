@@ -2,7 +2,7 @@ package ru.yandex.api.http.client.requests;
 
 import io.restassured.response.ValidatableResponse;
 import ru.yandex.api.http.client.BaseHttp;
-import ru.yandex.api.models.OrderModel;
+import ru.yandex.api.models.request.OrderModel;
 
 import static io.restassured.RestAssured.given;
 

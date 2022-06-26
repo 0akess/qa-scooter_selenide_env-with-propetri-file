@@ -2,10 +2,9 @@ package ru.yandex.ui.po.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import ru.yandex.api.models.OrderModel;
+import ru.yandex.api.models.request.OrderModel;
 import ru.yandex.ui.po.BasePage;
 
 import java.time.Duration;

@@ -1,8 +1,8 @@
-package ru.yandex.api.models.builder;
+package ru.yandex.api.models.request.builder;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
-import ru.yandex.api.models.OrderModel;
+import ru.yandex.api.models.request.OrderModel;
 
 import java.time.LocalDateTime;
 

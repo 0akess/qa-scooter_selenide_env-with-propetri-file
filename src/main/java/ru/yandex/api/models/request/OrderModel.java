@@ -1,4 +1,4 @@
-package ru.yandex.api.models;
+package ru.yandex.api.models.request;
 
 public class OrderModel {
 

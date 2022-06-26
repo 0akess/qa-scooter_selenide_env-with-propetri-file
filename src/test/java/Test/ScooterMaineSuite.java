@@ -1,51 +1,58 @@
 package Test;
 
-
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.EnumSource;
+import ru.yandex.data.Url;
 import ru.yandex.ScooterPageObject.MainePage;
+import ru.yandex.data.AnswersManePage;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 
-public class ScooterMaineSuite {
+public class ScooterMaineSuite extends BaseTest {
 
-    // Проверка вопроса и ответа на вопроса
+    private static final MainePage mainePage = page(MainePage.class);
+
+    @BeforeAll
+    public static void startTest(){
+        mainePage
+                .open(Url.MainPage)
+                .clickButtonAcceptCookie();
+    }
+
+    // Проверка ответов на вопросы
     @ParameterizedTest
-    @ValueSource(ints = { 0, 1, 2, 3, 4, 5, 6, 7 })
-    public void answersToQuestionsTwo(Integer argument) {
-
-        MainePage mainePage =
-                open("https://qa-scooter.praktikum-services.ru",
-                        MainePage.class);
+    @EnumSource(
+            value = AnswersManePage.class,
+            names = {"FirstAnswer", "SecondAnswer", "ThirdAnswer", "FourthAnswer",
+                    "FifthAnswer", "SixthAnswer", "SeventhAnswer", "EighthAnswer"})
+    public void answersToQuestionsTwo(AnswersManePage answersManePage) {
 
         mainePage
-                .openQuestionAndCheckingAnswer(argument);
+                .open(Url.MainPage)
+                .openQuestionAndCheckingAnswer(answersManePage);
     }
 
     // Тест проверяет, что находясь на главной странице
     // и кликая на кнопку "Скутер", пользователь остается на главной
     @Test
-    public void buttonScooterInManePage(){
+    public void buttonScooterInManePage() {
 
-        MainePage mainePage =
-                open("https://qa-scooter.praktikum-services.ru",
-                        MainePage.class);
-
-        mainePage.clickButtonScooter()
+        mainePage
+                .open(Url.MainPage)
+                .clickButtonScooter()
                 .urlIsManeScooter();
     }
 
     // Тест проверяет, что находясь на главной странице и кликая на
     // кнопку "Яндекс", у пользователя открывается страница с Яндексом
     @Test
-    public void buttonYandexInManePage(){
+    public void buttonYandexInManePage() {
 
-        MainePage mainePage =
-                open("https://qa-scooter.praktikum-services.ru",
-                        MainePage.class);
-
-        mainePage.clickButtonYandex()
+        mainePage
+                .open(Url.MainPage)
+                .clickButtonYandex()
                 .isUrlIsYandex();
     }
 }

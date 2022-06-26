@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
-public class CreateOrderPage extends Base_URL {
+public class CreateOrderPage extends BasePage<CreateOrderPage> {
 
     @FindBy(how = How.XPATH, using = "//button[text()='Заказать']")
     private ElementsCollection buttonOrderScooter;
@@ -80,10 +80,9 @@ public class CreateOrderPage extends Base_URL {
     private SelenideElement orderCreatedSuccessful;
 
 
-
     // Метод кликает на кнопку заказа. Их чаще всего две на странице.
     // Используйте 0, если нужна первая кнопка Заказать, 1, если вторая
-    public CreateOrderPage clickButtonOrderScooter(int numberOrderButton){
+    public CreateOrderPage clickButtonOrderScooter(int numberOrderButton) {
         buttonOrderScooter.get(numberOrderButton).click();
         return this;
     }
@@ -95,7 +94,7 @@ public class CreateOrderPage extends Base_URL {
     }
 
     // Метод проверяет, что в случае некорректного взаимодействия с полем Имя, появляется ошибка
-    public CreateOrderPage checkErrorFirstName(){
+    public CreateOrderPage checkErrorFirstName() {
         errorMassageFirstName.shouldHave(visible);
         return this;
     }
@@ -107,7 +106,7 @@ public class CreateOrderPage extends Base_URL {
     }
 
     //Метод проверяет, что в случае некорректного взаимодействия с полем Фамилия появляется ошибка
-    public CreateOrderPage checkErrorLastName(){
+    public CreateOrderPage checkErrorLastName() {
         errorMassageLastName.shouldBe(visible);
         return this;
     }
@@ -119,7 +118,7 @@ public class CreateOrderPage extends Base_URL {
     }
 
     // Метод проверяет, что в случае некорректного взаимодействия с полем Адрес, появляется ошибка
-    public CreateOrderPage checkErrorAddress(){
+    public CreateOrderPage checkErrorAddress() {
         errorMassageAddress.shouldHave(visible);
         return this;
     }
@@ -132,7 +131,7 @@ public class CreateOrderPage extends Base_URL {
     }
 
     //Метод проверяет, что в случае некорректного взаимодействия с полем Метро, появляется ошибка
-    public CreateOrderPage checkErrorMetroStation(){
+    public CreateOrderPage checkErrorMetroStation() {
         errorMassageMetro.shouldHave(visible);
         return this;
     }
@@ -144,8 +143,8 @@ public class CreateOrderPage extends Base_URL {
     }
 
     // Метод проверяет, что в случае некорректного взаимодействия с полем Телефон, появляется ошибка
-    public CreateOrderPage checkErrorNumberPhone(){
-        errorMassageNumberPhone.shouldHave(visible,Duration.ofMillis(500));
+    public CreateOrderPage checkErrorNumberPhone() {
+        errorMassageNumberPhone.shouldHave(visible, Duration.ofMillis(500));
         return this;
     }
 
@@ -218,7 +217,7 @@ public class CreateOrderPage extends Base_URL {
 
     // Метод проверяет, что появляется элемент "Заказ Оформлен"
     public CreateOrderPage checkOrderCreatedSuccessful() {
-        orderCreatedSuccessful.shouldHave(visible,(Duration.ofMillis(1000)));
+        orderCreatedSuccessful.shouldHave(visible, (Duration.ofMillis(1000)));
         return this;
     }
 }

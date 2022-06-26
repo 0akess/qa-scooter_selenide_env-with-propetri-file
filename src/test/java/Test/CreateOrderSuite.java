@@ -1,35 +1,22 @@
 package Test;
 
-import org.junit.jupiter.api.BeforeAll;
+import ru.yandex.ScooterPageObject.BasePage;
+import ru.yandex.data.Url;
+import ru.yandex.ScooterPageObject.CreateOrderPage;
 import org.junit.jupiter.api.Test;
-import ru.yandex.ScooterPageObject.*;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 
-public class CreateOrderSuite {
+public class CreateOrderSuite extends BaseTest {
 
-    @BeforeAll
-    static public void settingsBrowser() {
-
-        // Снимите коммент со строчек ниже, для того что бы запустить тест в Firefox
-//        System.setProperty("webdriver.geckodriver", "https://github.com/mozilla/geckodriver/releases");
-//        System.setProperty("selenide.browser", "firefox");
-
-        MainePage mainePage =
-                open("https://qa-scooter.praktikum-services.ru",
-                        MainePage.class);
-
-        mainePage.clickButtonAcceptCookie();
-    }
+    private final CreateOrderPage createOrderPage = page(CreateOrderPage.class);
 
     @Test
     public void createOrderFromTheHeaderPositive() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru",
-                        CreateOrderPage.class);
+        createOrderPage
+                .open(Url.MainPage)
 
-        makeOrder
                 // Шаг 1 - Открывается страница создания заказа
                 .clickButtonOrderScooter(0)
 
@@ -61,11 +48,9 @@ public class CreateOrderSuite {
     @Test
     public void createOrderFromTheMidlOfPagePositive() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru",
-                        CreateOrderPage.class);
+        createOrderPage.
+                open(Url.MainPage)
 
-        makeOrder
                 // Шаг 1 - Открывается страница создания заказа
                 .clickButtonOrderScooter(1)
 
@@ -100,11 +85,9 @@ public class CreateOrderSuite {
     @Test
     public void checkErrorMassageForInputFirstNameNoData() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru/order",
-                        CreateOrderPage.class);
-
-        makeOrder.clickButtonNextStep()
+        createOrderPage.
+                open(Url.OrderPage)
+                .clickButtonNextStep()
                 .checkErrorFirstName();
     }
 
@@ -113,11 +96,9 @@ public class CreateOrderSuite {
     @Test
     public void checkErrorMassageForInputFirstNameInvalidValue() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru/order",
-                        CreateOrderPage.class);
-
-        makeOrder.setValueFirstNameInput("ndsd123s")
+        createOrderPage.
+                open(Url.OrderPage)
+                .setValueFirstNameInput("ndsd123s")
                 .clickButtonNextStep()
                 .checkErrorFirstName();
     }
@@ -127,11 +108,9 @@ public class CreateOrderSuite {
     @Test
     public void checkErrorMassageForInputLastNameNoData() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru/order",
-                        CreateOrderPage.class);
-
-        makeOrder.clickButtonNextStep()
+        createOrderPage.
+                open(Url.OrderPage)
+                .clickButtonNextStep()
                 .checkErrorLastName();
     }
 
@@ -140,11 +119,9 @@ public class CreateOrderSuite {
     @Test
     public void checkErrorMassageForInputLastNameInvalidValue() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru/order",
-                        CreateOrderPage.class);
-
-        makeOrder.setValueLastNameInput("ndsd123s")
+        createOrderPage.
+                open(Url.OrderPage)
+                .setValueLastNameInput("ndsd123s")
                 .clickButtonNextStep()
                 .checkErrorLastName();
     }
@@ -154,11 +131,9 @@ public class CreateOrderSuite {
     @Test
     public void checkErrorMassageForInputAddressInvalidValue() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru/order",
-                        CreateOrderPage.class);
-
-        makeOrder.setValueAddressInput("ndsd123s")
+        createOrderPage.
+                open(Url.OrderPage)
+                .setValueAddressInput("ndsd123s")
                 .clickButtonNextStep()
                 .checkErrorAddress();
     }
@@ -167,11 +142,9 @@ public class CreateOrderSuite {
     @Test
     public void checkErrorMassageForInputMetroStationNoData() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru/order",
-                        CreateOrderPage.class);
-
-        makeOrder.clickButtonNextStep()
+        createOrderPage.
+                open(Url.OrderPage)
+                .clickButtonNextStep()
                 .checkErrorMetroStation();
     }
 
@@ -179,11 +152,9 @@ public class CreateOrderSuite {
     @Test
     public void checkErrorMassageForInputNumberPhoneNoData() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru/order",
-                        CreateOrderPage.class);
-
-        makeOrder.clickButtonNextStep()
+        createOrderPage.
+                open(Url.OrderPage)
+                .clickButtonNextStep()
                 .checkErrorNumberPhone();
     }
 
@@ -192,38 +163,32 @@ public class CreateOrderSuite {
     @Test
     public void checkErrorMassageForInputNumberPhoneInvalidValue() {
 
-        CreateOrderPage makeOrder =
-                open("https://qa-scooter.praktikum-services.ru/order",
-                        CreateOrderPage.class);
-
-        makeOrder.setValueNumberPhoneInput("ndsd123s")
+        createOrderPage.
+                open(Url.OrderPage)
+                .setValueNumberPhoneInput("ndsd123s")
                 .clickButtonNextStep()
                 .checkErrorNumberPhone();
     }
 
     // Тест проверяет, что находясь на странице создания заказа
     // и кликая на кнопку "Скутер", пользователь переходит на главную
-//    @Test
+    @Test
     public void checkButtonScooterInPageCheckOrder() {
 
-        MainePage mainePage =
-                open("https://qa-scooter.praktikum-services.ru/",
-                        MainePage.class);
-
-        mainePage.clickButtonScooter()
+        createOrderPage.
+                open(Url.MainPage)
+                .clickButtonScooter()
                 .urlIsManeScooter();
     }
 
     //Тест проверяет, что находясь на странице оформления заказа и кликая на
     // кнопку "Яндекс", у пользователя открывается страница с Яндексом
-//    @Test
+    @Test
     public void checkButtonYandexInOrderCreatePage() {
 
-        MainePage mainePage =
-                open("https://qa-scooter.praktikum-services.ru/",
-                        MainePage.class);
-
-        mainePage.clickButtonYandex()
+        createOrderPage.
+                open(Url.MainPage)
+                .clickButtonYandex()
                 .isUrlIsYandex();
 
     }

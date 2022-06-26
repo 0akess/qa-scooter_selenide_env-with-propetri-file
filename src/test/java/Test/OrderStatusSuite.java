@@ -1,23 +1,22 @@
 package Test;
 
-
 import org.junit.jupiter.api.Test;
-import ru.yandex.ScooterPageObject.MainePage;
-import ru.yandex.ScooterPageObject.OrderTrackPage;
+import ru.yandex.ScooterPageObject.OrderStatusPage;
+import ru.yandex.data.Url;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 
-public class OrderStatusSuite {
+public class OrderStatusSuite extends BaseTest {
+
+    private final OrderStatusPage orderStatusPage = page(OrderStatusPage.class);
 
     // Тест проверяет, что поиск заказа, через поле "Поиск заказа" в хедере, с невалидным номером - провалится
-    @org.junit.jupiter.api.Test
-    public void searchStatusOrderInHeader(){
+    @Test
+    public void searchStatusOrderInHeader() {
 
-        OrderTrackPage orderStatus =
-                open("https://qa-scooter.praktikum-services.ru",
-                        OrderTrackPage.class);
-
-        orderStatus.clickButtonOrderStatus()
+        orderStatusPage
+                .open(Url.MainPage)
+                .clickButtonOrderStatus()
                 .setValueInputSearchNumberOrderInHeader("123")
                 .clickButtonGoSearchNumberOrder()
                 .isDisplayedImgNotFound();
@@ -26,13 +25,11 @@ public class OrderStatusSuite {
     // Тест проверяет, что поиск заказа, через поле "Поиск заказа" на странице статус заказа,
     // с невалидным номером - провалится
     @Test
-    public void searchStatusOrderOnStatusOrderPage(){
+    public void searchStatusOrderOnStatusOrderPage() {
 
-        OrderTrackPage orderStatus =
-                open("https://qa-scooter.praktikum-services.ru/track",
-                        OrderTrackPage.class);
-
-        orderStatus.setValueInputSearchNumberOrderInOrderStatusPage("1234")
+        orderStatusPage
+                .open(Url.StatusPage)
+                .setValueInputSearchNumberOrderInOrderStatusPage("1234")
                 .clickButtonWatchSearchNumberOrder()
                 .isDisplayedImgNotFound();
     }
@@ -40,40 +37,34 @@ public class OrderStatusSuite {
     // Тест проверяет, что поиск заказа, через поле "Поиск заказа" на странице статус заказа,
     //с использованием букв, вместо цифр - провалится
     @Test
-    public void searchStatusOrderByLetters(){
+    public void searchStatusOrderByLetters() {
 
-        OrderTrackPage orderStatus =
-                open("https://qa-scooter.praktikum-services.ru/track",
-                        OrderTrackPage.class);
-
-        orderStatus.setValueInputSearchNumberOrderInOrderStatusPage("sdfsdf")
+        orderStatusPage
+                .open(Url.StatusPage)
+                .setValueInputSearchNumberOrderInOrderStatusPage("sdfsdf")
                 .clickButtonWatchSearchNumberOrder()
                 .isDisplayedImgNotFound();
     }
 
     // Тест проверяет, что находясь на странице оформления заказа
     //и кликая на кнопку "Скутер", пользователь остается на главной
-//    @Test
-    public void checkButtonScooterInPageOrderCreate(){
+    @Test
+    public void checkButtonScooterInPageOrderCreate() {
 
-        MainePage mainePage =
-                open("https://qa-scooter.praktikum-services.ru/track",
-                        MainePage.class);
-
-        mainePage.clickButtonScooter()
+        orderStatusPage
+                .open(Url.StatusPage)
+                .clickButtonScooter()
                 .urlIsManeScooter();
     }
 
     // Тест проверяет, что находясь на странице оформления заказа и кликая на
     // кнопку "Яндекс", у пользователя открывается страница с Яндексом
-//    @Test
-    public void checkButtonYandexInOrderStatusPage(){
+    @Test
+    public void checkButtonYandexInOrderStatusPage() {
 
-        MainePage mainePage =
-                open("https://qa-scooter.praktikum-services.ru/track",
-                        MainePage.class);
-
-        mainePage.clickButtonYandex()
+        orderStatusPage
+                .open(Url.StatusPage)
+                .clickButtonYandex()
                 .isUrlIsYandex();
     }
 }

@@ -10,9 +10,13 @@ public class OrdersRequest extends BaseHttp {
 
     public ValidatableResponse createOrder (OrderModel orderModel){
 
-        return given().spec(baseSpec())
-                .and().body(orderModel)
-                .when().post("/api/v1/orders").then();
+        return given()
+                .spec(baseSpec())
+                .and()
+                .body(orderModel)
+                .when()
+                .post("/api/v1/orders")
+                .then();
     }
 }
 

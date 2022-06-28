@@ -24,10 +24,7 @@ public class ScooterMaineSuite extends BaseTest {
 
     // Проверка ответов на вопросы
     @ParameterizedTest
-    @EnumSource(
-            value = AnswersManePage.class,
-            names = {"FirstAnswer", "SecondAnswer", "ThirdAnswer", "FourthAnswer",
-                    "FifthAnswer", "SixthAnswer", "SeventhAnswer", "EighthAnswer"})
+    @EnumSource(AnswersManePage.class)
     public void answersToQuestionsTwo(AnswersManePage answersManePage) {
 
         mainePage

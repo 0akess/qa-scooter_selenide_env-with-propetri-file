@@ -21,10 +21,10 @@ public class OrderTrackSuccessFind extends BaseTest {
     public void getTrackNumber(){
 
         orderBuild = new OrderBuilder().getJsonOrder();
-        int a = new OrdersRequest()
+        int track = new OrdersRequest()
                 .createOrder(orderBuild)
                 .extract().path("track");
-        trackOrder = String.valueOf(a);
+        trackOrder = String.valueOf(track);
     }
 
     // Тест проверяет, что поиск заказа, через поле "Поиск заказа" в хедере, с невалидным номером - провалится

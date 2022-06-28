@@ -11,12 +11,12 @@ abstract public class BaseTest {
 //        WebDriverManager.firefoxdriver().setup();
 //        Configuration.browser = "firefox";
 
-//        WebDriverManager.chromedriver().setup();
-//        Configuration.browser = "chrome";
+        WebDriverManager.chromedriver().setup();
+        Configuration.browser = "chrome";
 
-//        Configuration.driverManagerEnabled = true;
-//        Configuration.browserSize = "1920x1080";
-        Configuration.headless = true;
+        Configuration.driverManagerEnabled = true;
+        Configuration.browserSize = "1920x1080";
+        Configuration.headless = false;
     }
 
     @BeforeAll

@@ -11,10 +11,6 @@ public class Properties {
         String property = "";
         String env = System.getProperty("env");
 
-        if (env == null) {
-            env = "test";
-        }
-
         try {
             InputStream resourceAsStream = ClassLoader.getSystemResourceAsStream(env + ".properties");
             prop.load(resourceAsStream);

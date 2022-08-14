@@ -7,7 +7,7 @@ import test.BaseTest;
 
 import static com.codeborne.selenide.Selenide.page;
 
-public class CreateOrderSuite extends BaseTest {
+public class CreateOrderTest extends BaseTest {
 
     private final CreateOrderPage createOrderPage = page(CreateOrderPage.class);
 

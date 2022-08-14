@@ -11,7 +11,7 @@ import test.BaseTest;
 
 import static com.codeborne.selenide.Selenide.page;
 
-public class OrderTrackSuccessFind extends BaseTest {
+public class OrderTrackSuccessFindTest extends BaseTest {
 
     private TrackOrderPage trackOrderPage = page(TrackOrderPage.class);
     private String trackOrder;

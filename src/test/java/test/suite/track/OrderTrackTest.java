@@ -7,7 +7,7 @@ import test.BaseTest;
 
 import static com.codeborne.selenide.Selenide.page;
 
-public class OrderTrackSuite extends BaseTest {
+public class OrderTrackTest extends BaseTest {
 
     private final TrackOrderPage trackOrderPage = page(TrackOrderPage.class);
 

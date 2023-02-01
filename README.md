@@ -1,6 +1,7 @@
-# Selenide_Practice
+# qa-scooter
 
-используется:
+# Используется:
 - selenide
 - junit5
 - maven
+- env переменные через properti file
